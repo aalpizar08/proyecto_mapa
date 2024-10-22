@@ -1,20 +1,2 @@
 ﻿  Source.cpp
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,73): warning C4244: 'argumento': conversión de 'T' a 'T'; posible pérdida de datos
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,73): warning C4244:         with
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,73): warning C4244:         [
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,73): warning C4244:             T=int
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,73): warning C4244:         ]
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,73): warning C4244:         and
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,73): warning C4244:         [
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,73): warning C4244:             T=float
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,73): warning C4244:         ]
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,61): warning C4244: 'argumento': conversión de 'T' a 'T'; posible pérdida de datos
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,61): warning C4244:         with
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,61): warning C4244:         [
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,61): warning C4244:             T=int
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,61): warning C4244:         ]
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,61): warning C4244:         and
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,61): warning C4244:         [
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,61): warning C4244:             T=float
-C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\proyecto_mapa\Source.cpp(46,61): warning C4244:         ]
   proyecto_mapa.vcxproj -> C:\Users\aleja\Desktop\programming\repositorio-Proyecto II\proyecto_mapa\x64\Debug\proyecto_mapa.exe
