@@ -18,7 +18,15 @@ int main() {
             if (event.type == Event::Closed) {
                 window.close();
             }
+            if (event.type == Event::MouseButtonPressed) {
+                if (event.mouseButton.button == Mouse::Left) {
+                    // Obtener la posición del mouse en la ventana
+                    Vector2i mousePos = Mouse::getPosition(window);
+                    cout << "Clic en posición: (" << mousePos.x << ", " << mousePos.y << ")" << endl;
+                }
+            }
         }
+      
         window.clear();
         window.draw(mapSprite);
         window.display();
