@@ -5,9 +5,8 @@
 #include <fstream>
 using namespace std;
 class pointList {
-private:
-	class nodePoint {
-	public:
+public:
+	struct nodePoint {
 		Point point;
 		nodePoint* next;
 		nodePoint* prev;

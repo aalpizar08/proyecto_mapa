@@ -14,17 +14,18 @@ int main() {
     mapSprite.setTexture(map);
     while (window.isOpen()) {
         Event event;
-        while (window.pollEvent(event)) {
+        while (window.pollEvent(event)) {//cerrar ventana
             if (event.type == Event::Closed) {
                 window.close();
             }
-            if (event.type == Event::MouseButtonPressed) {
+            if (event.type == Event::MouseButtonPressed) {//obtener posicion donde de hace clic
                 if (event.mouseButton.button == Mouse::Left) {
                     // Obtener la posición del mouse en la ventana
                     Vector2i mousePos = Mouse::getPosition(window);
-                    cout << "Clic en posición: (" << mousePos.x << ", " << mousePos.y << ")" << endl;
+                    cout << "Clic en posicion: (" << mousePos.x << ", " << mousePos.y << ")" << endl;
                 }
             }
+
         }
       
         window.clear();
