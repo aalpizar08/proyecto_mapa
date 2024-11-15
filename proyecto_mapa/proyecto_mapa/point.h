@@ -1,42 +1,24 @@
 #pragma once
-#include <iostream>
-#include<SFML/Graphics.hpp>
-#include <string.h>
+#include<iostream>
+#include <string>
+#include "SFML/Graphics.hpp"
 using namespace std;
 using namespace sf;
-
-class Point{
+class Point {
 private:
 	string name;
-	float x;
-	float y;
+	float X,Y;
 public:
-	Point(string name, float x, float y) {
-		this->name = name;
-		this->x = x;
-		this->y = y;
-	}
-    //setters
-    void setName(string name) {
-        this->name = name;
-    }
-    void setX(float x) {
-        this->x = x;
-    }
-    void setY(float y) {
-        this->y = y;
-    }
-    //getters
-    string getName() const {
-        return name;
-    }
+	Point(string name, float X, float Y) :name(name), X(0), Y(0) {}
+	Point(string name) : X(0), Y(0) {}
+	Point(float X, float Y) : X(X), Y(Y) {}
+	Point(Vector2f XY) : name(""), X(XY.x),Y(XY.y) {}
+	void setName(string);
+	void setXY(Vector2f);
 
-    float getX() const {
-        return x;
-    }
-
-    float getY() const {
-        return y;
-    }
+	Vector2f getXY();
+	string getName();
+	float getX();
+	float getY();
 };
 

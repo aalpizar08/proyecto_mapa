@@ -1,14 +1,18 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <vector>
+#include "point.h"
+#include "route.h"
+#include "string"
 using namespace std;
 using namespace sf;
 
 int main() {
-    RenderWindow window(VideoMode(740, 575), "Mapa Puntarenas");
+    Route route;
+    
+    RenderWindow window(VideoMode(1166, 712), "Mapa");
     Texture map;
-    if (!map.loadFromFile("C:/Users/aleja/Desktop/programming/repositorio-Proyecto II/proyecto_mapa/resources/puntarenasMap.png")) {
-        return -1;
+    if (!map.loadFromFile("resources/guanacaste.png")) {
+        cout << "Error al cargar mapa" << endl;
     }
     Sprite mapSprite;
     mapSprite.setTexture(map);
@@ -18,18 +22,22 @@ int main() {
             if (event.type == Event::Closed) {
                 window.close();
             }
-            if (event.type == Event::MouseButtonPressed) {//obtener posicion donde de hace clic
+            if (event.type == Event::MouseButtonPressed) {
                 if (event.mouseButton.button == Mouse::Left) {
-                    // Obtener la posición del mouse en la ventana
                     Vector2i mousePos = Mouse::getPosition(window);
                     cout << "Clic en posicion: (" << mousePos.x << ", " << mousePos.y << ")" << endl;
+                    Vector2f spotPosition(mousePos.x, mousePos.y);
+                    Point point(spotPosition);
+                    route.createRoute(point);
                 }
             }
-
         }
-      
+       
         window.clear();
         window.draw(mapSprite);
+        route.printRoute(window);
+        route.curve(window);
+        //window.draw(spot);
         window.display();
     }
     return 0;

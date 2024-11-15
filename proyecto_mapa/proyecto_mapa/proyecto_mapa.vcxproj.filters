@@ -18,10 +18,10 @@
     <ClCompile Include="Source.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="pointList.cpp">
+    <ClCompile Include="point.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="routes.cpp">
+    <ClCompile Include="route.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,10 +29,7 @@
     <ClInclude Include="point.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="pointList.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="routes.h">
+    <ClInclude Include="route.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
