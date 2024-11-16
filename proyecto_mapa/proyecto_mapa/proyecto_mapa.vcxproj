@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="point.cpp" />
     <ClCompile Include="route.cpp" />
+    <ClCompile Include="routesList.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="point.h" />
     <ClInclude Include="route.h" />
+    <ClInclude Include="routesList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

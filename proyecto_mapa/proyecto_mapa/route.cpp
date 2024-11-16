@@ -12,21 +12,24 @@ void Route::createRoute(Point point) {
 		tail = newPoint;
 	}
 }
+void Route::deletePoint()
+{
+}
 void Route::printRoute(RenderWindow& window){
-	nodePoint* aux = head;
-	while (aux != nullptr) {
+	nodePoint* running = head;
+	while (running != nullptr) {
 		CircleShape point(6.0f);
 		point.setFillColor(Color::Red);
-		point.setPosition(aux->point.getXY());
+		point.setPosition(running->point.getXY());
 		window.draw(point);
-		aux = aux->next;
+		running = running->next;
 	}
 }
 void Route::curve(RenderWindow& window) {
-    nodePoint* aux = head;
-    if (aux != nullptr) {
+    if (head != nullptr) {
+        nodePoint* running = head;
         //estos nodos funcionan para siempre conectar el punto actual con el anterior
-        nodePoint* p0 = aux;
+        nodePoint* p0 = running;
         nodePoint* p1 = p0->next;
         while (p1 != nullptr) {
             Point mid((p0->point.getXY().x + p1->point.getXY().x) / 2,
@@ -45,6 +48,19 @@ void Route::curve(RenderWindow& window) {
             //avanza los dos nodos para adelante
             p0 = p1;
             p1 = p1->next;
+        }
+    }
+}
+void Route::printName(RenderWindow& window, Text& text){
+
+    if (head != nullptr) {
+        nodePoint* running;
+        running = head;
+        while (running != nullptr) {
+            text.setString(running->point.getName());
+            text.setPosition(running->point.getXY().x, running->point.getXY().y - 15);
+            window.draw(text);
+            running = running->next;
         }
     }
 }

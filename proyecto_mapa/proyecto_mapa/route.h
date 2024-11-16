@@ -17,7 +17,9 @@ private:
 public:
 	Route() :head(nullptr), tail(nullptr) {}
 	void createRoute(Point);
+	void deletePoint();
 	void printRoute(RenderWindow&);
 	void curve(RenderWindow&);
+	void printName(RenderWindow&, Text&);
 };
 
