@@ -8,18 +8,32 @@ class Point {
 private:
 	string name;
 	float X,Y;
+	CircleShape point;
 public:
-	Point(string name, float X, float Y) :name(name), X(0), Y(0) {}
-	Point(string name) : X(0), Y(0) {}
-	Point(float X, float Y) : X(X), Y(Y) {}
-	Point(Vector2f XY) : name(""), X(XY.x),Y(XY.y) {}
-	Point(string name, Vector2f XY) : name(name), X(XY.x), Y(XY.y) {}
-	void setName(string);
+    Point(string name, float X, float Y) : name(name), X(X), Y(Y) {
+        point.setRadius(6.0f); // Configurar el tamaño del punto
+        point.setFillColor(Color::Red);
+        point.setPosition(X, Y); // Establecer la posición inicial
+    }
+    Point(float X, float Y) : name(""), X(X), Y(Y) {
+        point.setRadius(6.0f);
+        point.setFillColor(Color::Red);
+        point.setPosition(X, Y);
+    }
+    Point(string name, Vector2f XY) : name(name), X(XY.x), Y(XY.y) {
+        point.setRadius(6.0f);
+        point.setFillColor(Color::Red);
+        point.setPosition(X, Y);
+    }
+    void printPoint(RenderWindow&);//cada clase punto con su respectivo punto
+    //setetrs
+    void setName(string);
 	void setXY(Vector2f);
-
+    //getters
 	Vector2f getXY();
 	string getName();
 	float getX();
 	float getY();
+    CircleShape getPoint();
 };
 

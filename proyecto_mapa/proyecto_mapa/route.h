@@ -17,7 +17,8 @@ private:
 public:
 	Route() :head(nullptr), tail(nullptr) {}
 	void createRoute(Point);
-	void deletePoint();
+	void deletePoint(Vector2f);
+	void editPoint(RenderWindow&, Event&, bool&);
 	void printRoute(RenderWindow&);
 	void curve(RenderWindow&);
 	void printName(RenderWindow&, Text&);

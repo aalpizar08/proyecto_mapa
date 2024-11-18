@@ -8,6 +8,7 @@ using namespace std;
 using namespace sf;
 int main() {
     int option = 0;
+    bool click = false;
     string nameRoute, namePoint;
     Route route;//ruta
     routesList list;//lista de rutas
@@ -15,6 +16,7 @@ int main() {
     Font font;
     if (!font.loadFromFile("resources/arial.ttf")) {
         cout << "error al cargar la fuente" << endl;
+        return -1;
     }
     Text text;
     text.setFont(font);
@@ -24,6 +26,7 @@ int main() {
     Texture map;
     if (!map.loadFromFile("resources/guanacaste.png")) {
         cout << "Error al cargar mapa" << endl;
+        return -1;
     }
     Sprite mapSprite;
     mapSprite.setTexture(map);
@@ -55,23 +58,27 @@ int main() {
                             cout << "Digite el nombre del lugar: " << endl;
                             cin >> namePoint;
                             Point point(namePoint, spotPosition);
-                            route.createRoute(point);
+                            route.createRoute(point);//se crea la ruta
                         }
                     }
                 }
                 window.clear();
                 window.draw(mapSprite);
-                route.printRoute(window);
-                route.printName(window,text);
+                route.printName(window, text);
+                route.printRoute(window);//crea puntos
                 route.curve(window);
                 window.display();
             }
+            list.saveRoute(nameRoute, route);//se guarda fuera de while para que solo se guarde una vez
+            break;
+        case 2:
+            list.printNames();
+            list.selectRoute(window, text, nameRoute);
+           
             break;
         default:
             break;
         }
     }
-
-    
     return 0;
 }

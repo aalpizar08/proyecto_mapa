@@ -1,6 +1,6 @@
 #include "routesList.h"
-void routesList::saveRoute(string name, Route* list){
-	nodeList* newNode = new nodeList(name, list);
+void routesList::saveRoute(string name, Route list){
+	nodeList* newNode = new nodeList(name,list);
 	newNode->next = nullptr;
 	if (head == nullptr) {
 		head = newNode;
@@ -17,9 +17,12 @@ void routesList::printNames(){
 	if (head != nullptr) {
 		nodeList* running = head;
 		while (running != nullptr) {
-			cout << "Nombre de la ruta: " << running->name << endl;
+			cout << "Nombre de la ruta -> " << running->name << endl;
 			running = running->next;
 		}
+	}
+	else {
+		cout << "Lista vacia." << endl;
 	}
 }
 void routesList::deleteRoute(string name){
@@ -44,24 +47,18 @@ void routesList::deleteRoute(string name){
 		}
 	}
 }
-void routesList::loadRoutes()
-{
-}
-void routesList::downloadRoutes()
-{
-}
 void routesList::selectRoute(RenderWindow& window, Text& text, string name){
 	if (head != nullptr) {
 		nodeList* running = head;
 		while ((running->next != nullptr) && (running->name != name)) {
 			running = running->next;
 		}
-		running->route->printRoute(window);
-		running->route->curve(window);
-		running->route->printName(window, text);
+		running->route.printRoute(window);
+		running->route.curve(window);
+		running->route.printName(window, text);
 	}
 	else {
-		cout << "la Lista se encuentra vacia, agregue una ruta para mostrar la lisat" << endl;
+		cout << "la Lista se encuentra vacia, agregue una ruta para mostrar la lista" << endl;
 	}
 }
 
