@@ -47,7 +47,30 @@ void routesList::deleteRoute(string name){
 		}
 	}
 }
-void routesList::selectRoute(RenderWindow& window, Text& text, string name){
+void routesList::saveRoutes(string& routesFile){
+	nodeList* running = head;
+	ofstream routes(routesFile, ios::app);
+	if (routes.fail()) {
+		cout << "Error al abrir el archivo" << endl;
+		exit(1);
+	}
+	while (running) {
+		routes << running->name << " "<<endl;
+		running->route.saveRoutesPoint(routesFile);
+		running = running->next;
+	}
+}
+void routesList::selectRouteToEdit(RenderWindow& window, Event& event, bool& click,string name){
+	nodeList* running = head;
+	while (running != nullptr) {
+		if (running->name == name) {
+			running->route.printRoute(window);
+			running->route.editRoute(window, event, click);
+		}
+		running = running->next;
+	}
+}
+void routesList::displayRoute(RenderWindow& window, Text& text, string name){
 	if (head != nullptr) {
 		nodeList* running = head;
 		while ((running->next != nullptr) && (running->name != name)) {

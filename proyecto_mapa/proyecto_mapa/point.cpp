@@ -16,10 +16,10 @@ string Point::getName() {
     return name;
 }
 float Point::getX(){
-    return 0.0f;
+    return X;
 }
 float Point::getY(){
-    return 0.0f;
+    return Y;
 }
 CircleShape Point::getPoint()
 {

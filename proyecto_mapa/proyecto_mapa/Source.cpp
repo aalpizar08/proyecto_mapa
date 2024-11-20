@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdlib.h>
+#include <fstream>
 #include <SFML/Graphics.hpp>
 #include "point.h"
 #include "route.h"
@@ -8,10 +10,7 @@ using namespace std;
 using namespace sf;
 int main() {
     int option = 0;
-    bool click = false;
-    string nameRoute, namePoint;
-    Route route;//ruta
-    routesList list;//lista de rutas
+    string routesFile = "resources/routesFile";
     //fuente
     Font font;
     if (!font.loadFromFile("resources/arial.ttf")) {
@@ -31,20 +30,27 @@ int main() {
     Sprite mapSprite;
     mapSprite.setTexture(map);
     //inicio del menu en consola
-    while (option != 3) {
+    while (option != 4) {
+        bool click = false;
+        string nameRoute, namePoint, nameSelected;
+        Route route;//ruta
+        routesList list;//lista de rutas
+        system("CLS");
         cout << "Bienvenido al menu principal" << endl;
         cout << "Digite una opcion mediante un numero" << endl;
         cout << "1) Crear ruta turistica" <<  endl;
-        cout << "2) Cargar rutas" << endl;
-        cout << "3) Salir" << endl;
+        cout << "2) Ver rutas guardadas" << endl;
+        cout << "3) Editar ruta" << endl;
+        cout << "4) Salir" << endl;
         cin >> option;
-        if (option == 1) {
-            cout << "Digite el nombre de la ruta:" << endl;
-            cin >> nameRoute;
-        }
         RenderWindow window(VideoMode(1166, 712), "Mapa");//ventana
         switch (option){
-        case 1://Crear ruta turistica, aqui se usa el sfml
+        case 1://Crear ruta turistica
+            system("CLS");
+            if (option == 1) {
+                cout << "Digite el nombre de la ruta:" << endl;
+                cin >> nameRoute;
+            }
             while (window.isOpen()) {
                 Event event;
                 while (window.pollEvent(event)) {//cerrar ventana
@@ -70,13 +76,43 @@ int main() {
                 window.display();
             }
             list.saveRoute(nameRoute, route);//se guarda fuera de while para que solo se guarde una vez
+            list.saveRoutes(routesFile);//se guarda en archivo txt
             break;
-        case 2:
+        case 2://imprimir una ruta ya guardada
+            system("CLS");
             list.printNames();
-            list.selectRoute(window, text, nameRoute);
-           
+            cout << "Digite el nombre de la ruta que desea ver: " << endl;
+            cin >> nameSelected;
+            cout << "Se va a imprimir la ruta " << nameSelected << endl;
+            cout << "Para terminar salir cierre la ventana" << endl;
+            system("PAUSE");
+            while (window.isOpen()) {
+                Event event;
+                while (window.pollEvent(event)) {
+                    if (event.type == Event::Closed) {
+                        list.displayRoute(window, text, nameSelected);
+                        window.close();
+                    }
+                } 
+            }
             break;
+        case 3://editar
+            system("CLS");
+            list.printNames();
+            cout << "Digite el nombre de la ruta que desea editar: " << endl;
+            cin >> nameSelected;
+            while (window.isOpen()) {
+                Event event;
+                while (window.pollEvent(event)) {
+                    if (event.type == Event::Closed) {
+                        window.close();
+                    }
+                    list.displayRoute(window, text, nameSelected);
+                    list.selectRouteToEdit(window, event, click, nameSelected);
+                }
+            }
         default:
+            cout << "Opcion invalida." << endl;
             break;
         }
     }

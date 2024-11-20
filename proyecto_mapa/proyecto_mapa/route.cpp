@@ -15,45 +15,57 @@ void Route::createRoute(Point point) {
 void Route::deletePoint(Vector2f mousePos){
     nodePoint* running = head;
     while (running != nullptr) {
-        if (running->point.getXY() == mousePos) {
-            if (running == head && running == tail) {
-                head = nullptr;
-                tail = nullptr;
-            }
-            else if (running == head) {
-                head = head->next;
-                head->prev = nullptr;
-            }
-            else if (running == tail) {
-                tail = tail->prev;
-                tail->prev = nullptr;
-            }
-            else {
-                running->prev->next = running->next;
-                running->next->prev = running->prev;
-            }
-            delete running;
-            return;
-        }
+        
         running = running->next;
     }
 }
-void Route::editPoint(RenderWindow& window, Event& event, bool& click){
-    Vector2f mousePos = window.mapPixelToCoords(Mouse::getPosition(window));//convierte los pixeles en coordenadas
+void Route::editRoute(RenderWindow& window, Event& event, bool& click) {
+    Vector2f mousePos = window.mapPixelToCoords(Mouse::getPosition(window));//convierte los pixeles ern coordenadas
     Vector2f offset;
+    static nodePoint* selected = nullptr;//es el punto seleccionado por el raton
     nodePoint* running = head;
-    while (running != nullptr) {
-        if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
+    if (event.type == Event::MouseButtonPressed && (event.mouseButton.button == Mouse::Left)) {//mover un punto arrastrandolo con el raton
+        while (running != nullptr) {
             if (running->point.getPoint().getGlobalBounds().contains(mousePos)) {
-                click = true;
+                selected = running;
                 offset = mousePos - running->point.getXY();
+                click = true;
+                break;
             }
+            running = running->next;
         }
-        if ((event.type == Event::MouseButtonReleased) && (event.mouseButton.button == Mouse::Left)) {
-            click = false;
-        }
-        if ((event.type == Event::MouseMoved) && (click)) {
-            running->point.setXY(mousePos - offset);
+    }
+    if ((event.type == Event::MouseMoved) && (click)) {//mueve el punto
+        running->point.setXY(mousePos - offset);
+    }
+    if ((event.type == Event::MouseButtonReleased) && (event.mouseButton.button == Mouse::Left)) {//detecta cuando se suelta el click
+        click = false;
+        selected = nullptr;
+    }
+    if ((event.type == Event::MouseButtonPressed) && (event.mouseButton.button == Mouse::Right)) {
+        nodePoint* running = head;
+        while (running != nullptr) {
+            if (running->point.getPoint().getGlobalBounds().contains(mousePos)) {//encuentra un punto para eliminar mediante clic
+                if (running == head && running == tail) {
+                    head = nullptr;
+                    tail = nullptr;
+                }
+                else if (running == head) {
+                    head = head->next;
+                    head->prev = nullptr;
+                }
+                else if (running == tail) {
+                    tail = tail->prev;
+                    tail->prev = nullptr;
+                }
+                else {
+                    running->prev->next = running->next;
+                    running->next->prev = running->prev;
+                }
+                delete running;
+                return;
+            }
+            running = running->next;
         }
     }
 }
@@ -63,6 +75,7 @@ void Route::printRoute(RenderWindow& window){
         running->point.printPoint(window);
 		running = running->next;
 	}
+    curve(window);
 }
 void Route::curve(RenderWindow& window) {
     if (head != nullptr) {
@@ -101,6 +114,29 @@ void Route::printName(RenderWindow& window, Text& text){
             running = running->next;
         }
     }
+}
+bool Route::isInNodePoint(string name){
+    nodePoint* runninng = head;
+    while (runninng != nullptr) {
+        if (runninng->point.getName() == name) {
+            return true;
+        }
+        runninng = runninng->next;
+    }
+    return false;
+}
+void Route::saveRoutesPoint(string& routesFile){
+    nodePoint* running = head;
+    ofstream route(routesFile,ios::app);
+    if (route.fail()){
+        cout << "Error al abrir el archivo" << endl;
+        exit(1);
+    }
+    while (running != nullptr) {
+        route << running->point.getName() <<" " << running->point.getX() <<" " << running->point.getY() << endl;
+        running = running->next;
+    }
+    route.close();
 }
 
             
